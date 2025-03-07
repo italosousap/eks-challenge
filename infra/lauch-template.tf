@@ -13,19 +13,13 @@ resource "aws_launch_template" "lt_app" {
 
   ebs_optimized = true
 
-  iam_instance_profile {
-    name = "eks-cluster-node-role"
-  }
+  image_id = "ami-0bfe24baa71c55ffc"
 
-  image_id = "ami-023924ecc2c7293f8"
-
-  instance_type = "t3.medium"
+  instance_type = "t4g.medium"
 
   monitoring {
     enabled = true
   }
-
-  vpc_security_group_ids = ["sg-2350f46a"]
 
   tag_specifications {
     resource_type = "instance"
@@ -34,8 +28,10 @@ resource "aws_launch_template" "lt_app" {
       Name = "lb-app"
     }
   }
+  key_name = "bastion"
 
-  #user_data = filebase64("${path.module}/example.sh")
+  user_data = filebase64("${path.module}/userdata.sh")
+
   depends_on = [
     aws_eks_cluster.cluster,
     aws_iam_role.node

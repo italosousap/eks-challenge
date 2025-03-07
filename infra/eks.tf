@@ -5,10 +5,10 @@ resource "aws_eks_cluster" "cluster" {
     authentication_mode = "API"
     bootstrap_cluster_creator_admin_permissions = false
   }
-  bootstrap_self_managed_addons = true
+  bootstrap_self_managed_addons = false
 
   role_arn = aws_iam_role.cluster.arn
-  version  = "1.32"
+  version  = "1.31"
 
   vpc_config {
     subnet_ids = data.aws_subnets.subnets.ids
