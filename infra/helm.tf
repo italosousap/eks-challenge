@@ -124,7 +124,18 @@ resource "helm_release" "lbc" {
   namespace     = "kube-system"
 
   set {
-    name  = "rbac.serviceAccount.name"
-    value = "cluster-autoscaler"
+    name  = "clusterName"
+    value = "sre-challenge"
   }
+
+  set {
+    name  = "serviceAccount.create"
+    value = "false"
+  }
+
+  set {
+    name  = "serviceAccount.name"
+    value = "aws-load-balancer-controller"
+  }
+
 }

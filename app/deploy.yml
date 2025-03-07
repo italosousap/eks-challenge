@@ -27,15 +27,9 @@ spec:
         - name: OTEL_EXPORTER_OTLP_PROTOCOL
           value: "http/protobuf"
         - name: OTEL_EXPORTER_OTLP_LOGS_ENDPOINT
-          value: "http://loki.monitoring.svc.cluster.local:3100/loki/api/v1/push"
+          value: "http://loki.monitoring.svc.cluster.local:3100/otlp/v1/logs"
         - name: OTEL_EXPORTER_OTLP_METRICS_ENDPOINT
-          value: http://prometheus-server.monitoring.svc.cluster.local"
-        #- name: OTEL_METRICS_EXPORTER
-        #  value: "prometheus"
-        #- name: OTEL_METRICS_EXPORTER_PORT
-        #  value: "9464"
-        #- name: OTEL_METRICS_EXPORTER_HOST
-        #  value: "http://prometheus-server.monitoring.svc.cluster.local"
+          value: "http://prometheus-server.monitoring.svc.cluster.local/api/v1/otlp/v1/metrics"
         - name: OTEL_SERVICE_NAME
           value: "desafio-sre-app"
         - name: OTEL_INSTRUMENTATION_LIBRARY_NAMES
